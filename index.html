@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>eFaulty Map</title>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta content='' name='description' />
+    <meta content='' name='author' />
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+          <style type="text/css">
+          #googft-legend{background-color:rgba(249, 249, 249, 0.82); border:1px solid #000000;font-family:'Lato', sans-serif;font-size:12px;margin:5px;border-radius: 10px;padding:10px 10px 8px}#googft-legend p{font-weight:bold;margin-top:0}#googft-legend div{margin-bottom:5px}.googft-legend-swatch{border:1px solid;float:left;height:12px;margin-right:8px;width:20px}.googft-legend-range{margin-left:0}.googft-dot-icon{margin-right:8px}.googft-paddle-icon{height:24px;left:-8px;margin-right:-8px;position:relative;vertical-align:middle;width:24px}.googft-legend-source{margin-bottom:0;margin-top:8px}.googft-legend-source a{color:#666;font-size:11px}
+
+            .dayform        { margin-left:4px;}
+            .tableform      { display: table;
+                            margin: 0;
+                          padding: 0;
+                          width: 100%;
+                      }
+            .tableformleft  {  width: 30%; }
+            .dayform input  { width:200px;
+                              margin: 5px;}
+            .txtarea        { width:200px;}
+            .submit {}
+td {
+    border-collapse: collapse;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 69%;
+}
+
+.radio input[type=radio], .radio-inline {
+    margin-left: 0px !important;
+}
+.radio-inline, .checkbox-inline {
+  padding-left: 100px !important;
+}
+          </style>
+  </head>
+  <body>
+  
+    <div class='navbar navbar-inverse navbar-fixed-top'>
+      <div class='container-fluid'>
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class='navbar-brand' href='index.html'> eFaulty Maps</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class='active'><a href="index.html">Map</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <header>
+    <div classs="container">
+      <div class="header-content">
+        <div class="row">
+          <div class="col-lg-6">
+            <div style="margin-top: 150px;"></div>
+            <h1>eFaulty Map</h1>
+
+            <div id="typed-strings">
+
+              	<h1><span class="typed"></span></h1>
+              
+          </div>
+          <span id="typed"></span>
+
+              </div>
+              <div class="col-lg-6">
+              <div style="margin-top: 130px;">
+                <img src="images/header.png" class="img-responsive">
+              </div>
+
+              </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+<br>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-md-4'>
+          <p class=""> Welcome to our eFaulty Map tool. It's mainly designed to scale FTTx operations through its inherent GIS capabilities.</p>
+          <p class=""> It's supportive on all internet enabled devices :- Mobile, Desktops to mention a few. </p>
+          <div class='well'>
+            <h4>
+             
+            </h4>
+<hr class="colorgraph">
+<input type="button" onclick="GetLocation()"  class="btn btn-info" value="Get Location" />
+<br /> <br /> 
+  <div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <p class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          Co-ordinate Finder  &nbsp;  <i class="fas fa-street-view"></i>
+        </p>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse">
+      <div class="panel-body">
+          <p>
+              <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+            </p>
+        <p>The Co-ordinate finder helps in the tracking details of (WGS84 Co-ordinate system) on the map, by dragging the Marker to diferent points on in-order to output accurate values for Latitude and Longitude of surface area  into the textbox area.</p>
+      
+       <p> However, click and move the Marker <img src="/layout/images/marker1.png" width=15px height="10px" class="img-responsive" style="display: inline;"> display on the map to a desire location.
+        
+      </p>
+        <input class='form-control' id='loc' type='text'  placeholder="Result" style="display: none;"/>
+        <br>
+       <p>You can as well input the address of the desire location to geocode into numerical values of Latitude and Longitude. Pls note while keying the address start with House, Block, Plot number and suffix with other details for a proper google address format    
+      </p>
+    
+       <p>For example:</p>
+      
+      <li>10 Adenubi Close, Ikeja, Lagos.</li> 
+      <li>2 206 Road C-close, Festac Town, Lagos.</li> 
+
+       <br><br/>
+
+       <input type="text" id="txtaddr" placeholder="Get Latitude & Longitude"  class="form-control">
+
+       <label id="result" style="padding: 7px 40px 0px 40px"> </label>     
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <p class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Filterable Maps
+
+          
+        </p>
+      </h4>
+    </div>
+
+    
+
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+
+          <p>
+              <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+            </p>
+            <br/>
+          
+          <h4>Collapsable (Network Elements)</h4>
+          <p> Kindly, toggle (ON/OFF) between the category of Network Element as shown on the Map </p>
+          <div class="btn-group btn-toggle"> 
+            <button class="btn btn-default" data-toggle="collapse" data-target="#collapsible">Open</button>
+            <button class="btn btn-danger active" data-toggle="collapse" data-target="#collapsible">Close</button>
+          </div> <br/> <br/>
+          <div class="collapse" id="collapsible"> 
+
+              <ul class='inputs-list unstyled' id="block2">
+                  <li>
+                    <label class='checkbox inline'>
+                      <input type='checkbox' id='cbType1' />
+                      <span class='filter-box filter-yellow'></span>
+                      Pole
+                    </label>
+                  </li>
+                  <li>
+                    <label class='checkbox inline'>
+                      <input type='checkbox' id='cbType2' />
+                      <span class='filter-box filter-red'></span>
+                      HandHole
+                    </label>
+                  </li>
+                  <li>
+                    <label class='checkbox inline' >
+                      <input type='checkbox' id='cbType3' />
+                      <span class='filter-box2 filter-red2'></span>
+                      Cables
+                    </label>
+                  </li>
+                  <li>
+                    <label class='checkbox inline' >
+                      <input type='checkbox' id='cbType4' />
+                      <span class='filter-box filter-green'></span>
+                      Customers
+                    </label>
+                  </li>
+                  
+                </ul>
+
+                <hr> 
+                <ul class='inputs-list unstyled' id="block2">
+                  <li>
+                    <label class='checkbox inline'>
+                      <input type='checkbox' id='cbType11' />
+                      <span class='filter-box2 filter-red2'></span>
+                      Downtime Links
+                    </label>
+                  </li>
+                  <li>
+                    <label class='checkbox inline'>
+                      <input type='checkbox' id='cbType21' />
+                      <span class='filter-box2 filter-green2'></span>
+                      Uptime Links
+                    </label>
+                  </li>
+                  <li style="display: none">
+                    <label class='checkbox inline' >
+                      <input type='checkbox' id='cbType31' />
+                      <span class='filter-box2 filter-red2'></span>
+                      Cables
+                    </label>
+                  </li>
+                  
+                </ul>
+
+            
+          </div>
+          <hr>
+
+          <h4>Collapsable (Customer's Info)</h4>
+          <p> Kindly, input the customer's detail and search detail on the Map </p>
+          <div class="btn-group btn-toggle"> 
+            <button class="btn btn-success" data-toggle="collapse" data-target="#collapsible2">Open</button>
+            <button class="btn btn-default active" data-toggle="collapse" data-target="#collapsible2">Close</button>
+          </div> <br/> <br/>
+          <div class="collapse" id="collapsible2">
+            
+            <input type="text" class="form-control" id="text_search" placeholder="Enter Customer's Info." />
+
+              
+          </div>
+          <hr>
+
+      
+        
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <p class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          eFaulty Map Finder 
+        </p>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      <div> 
+      <script src="http://www.google.com/jsapi" type="text/javascript"> </script>
+
+<script type="text/javascript">
+            
+google.load('maps','3', {other_params: "sensor=false"});
+
+var query='';
+var lats = new Array(10);
+var lons = new Array(10);
+var geocoder;
+var f1;
+var customIndex=0;
+var sigDigits=8;
+var mapwin = null;
+var gStartlat=0;
+var gStartlon=0;
+var point = new Object();
+point.lat = 0;
+point.lon = 0;
+point.finalBrg=0;
+point.backBrg=0;
+var smajor= new Array(6372797.6, 6378137, 6377340.189, 6378160, 6377397.155, 6378206.4, 6378249.145, 6377276.345, 6378137, 6378388, 6378245, 6378160, 6378135, 0);
+var flat= new Array(0, 298.257223563, 299.3249646, 298.25, 299.1528128, 294.9786982138, 293.465, 300.8017, 298.257222101, 297, 298.3, 298.25, 298.26, 0);
+
+
+function initialize() {
+f1=document.frm;
+customIndex=f1.model.length-1;
+f1.results.value = "";
+geocoder=new google.maps.Geocoder();
+f1.search.focus();
+}
+
+
+function launchGeocode() {
+query=trim(document.getElementById('search').value);
+var l=query.length;
+if (l==0)
+ {
+alert("You must enter a city, town or other place to search for");
+f1.search.focus();
+return;
+}
+geocoder.geocode({'address': query}, gCallback);
+}
+
+function gCallback(res, status) {
+var r=f1.results;
+if (status != "OK") {
+switch(status) {
+case "ZERO_RESULTS":
+alert('No results were found for this location');
+break;
+case "OVER_QUERY_LIMIT":
+alert('Google geocoder speed limit.'); 
+break;
+case "REQUEST_DENIED":
+alert('Request denied');
+break;
+case "INVALID_REQUEST":
+alert('Invalid request');
+break;
+}
+r.length=0;
+return;
+}
+// status=OK
+var addr;
+r.length=0;
+lats.length=0;
+lons.length=0;
+for (i=0; i<res.length; i++) {
+addr=res[i].formatted_address;
+appendOptionLast("results", addr);
+r[r.length-1].value=res[i].geometry.location.lat() + "|" + res[i].geometry.location.lng();
+lats[i] = res[i].geometry.location.lat();
+lons[i] = res[i].geometry.location.lng();
+}
+if (lats.length > 0) {
+f1.startlat.value=lats[0];
+f1.startlon.value=lons[0];
+}
+if (r.length == 1) {
+document.getElementById("resultslabel").innerHTML = "1 search result:";
+} else {
+document.getElementById("resultslabel").innerHTML = r.length + " search results:";
+}
+toggle2Rows("resultsrow", "searchrow");
+f1.results.focus();
+}
+
+function toggle2Rows(div1, div2) {
+document.getElementById(div1).style.display = "block";
+document.getElementById(div2).style.display = "none";
+}
+
+
+document.write('<form NAME="frm" id="frm" method="post" action="viewmap.php" class="dayform"><table cellpadding="3" style="display: none"><tr><td id="searchrow" align="left" style="display: none"><label for="search" accesskey="S">Search for place:</label><input type="text" id="search" value="" size="30" maxlength="52" onfocus="this.select">&nbsp;&nbsp;<input type="button" class="btn" value="Find it" onClick="launchGeocode()"></td><td id="resultsrow" align="left" style="width: 100%; display: none"><label id="resultslabel" for="results" accesskey="U" style="background-color: #7FFFD4; border: 1px black solid">0 search results:</label><select id="results" style="width: 14.1em" onchange="writeLatLon()"><option></option></select>&nbsp;&nbsp;<input type="button" class="btn" value="New search" onclick="clearGeocode()"></td></tr></table><table cellpadding="3" class="tableform"><tr id="startlatrow"><td class="tableformleft" align="" colspan="">Latitude: </td> <td><input type="text" id="startlat" value="" class="form-control" size="14" maxlength="14" onfocus="this.select()"> </td> </tr> <tr> <td class="tableformleft"> Longitude: </td> <td> <input type="text" id="startlon" class="form-control" value="" size="14" maxlength="14" onfocus="this.select()"></td></tr><tr id="maxdistrow"><td align="" colspan="" class="tableformleft"> Bearing: </td> <td><input type="text" class="form-control" id="bearing" value="" size="14" maxlength="14" onfocus="this.select()"> </td> </tr> <tr> <td class="tableformleft"> Distance: </td> <td><input type="text" id="dist" value="" class="form-control" size="14" maxlength="14" onfocus="this.select()"></td> </tr> <tr> <td><label class="radio-inline"><input type="radio" name="distunits" checked=""> Miles </label> </td></tr> <tr> <td> <label class="radio-inline"><input type="radio" name="distunits"> km </label> </td> </tr> <tr id="ellipserow" style="display: none"><td align="left" colspan="2"><label for="major">Ellipsoid size (in meters):</label><br><label for="major">Equatorial radius:</label><input type="text" id="major" value="" size="14" maxlength="14" onfocus="this.select()">&nbsp;&nbsp;&nbsp;<select id="param2"><option selected>&nbsp;Polar radius:<option>Inv flattening:</select><input type="text" id="minor" value="" size="14" maxlength="14" onfocus="this.select()"></td></tr><tr><td class="tableformleft">Earth Model:</td><td><select id="model" class="form-control" onchange="setEllipse()"><option>Sphere<option selected>WGS84 ellipsoid<option>Airy modified ellipsoid<option>Australian ellipsoid<option>Bessel (1841) ellipsoid<option>Clarke (1866)/NAD27 ellipsoid<option>Clarke (1880) ellipsoid<option>Everest (1830) ellipsoid<option>GRS80 ellipsoid<option>International/Hayford ellipsoid<option>Krasovsky ellipsoid<option>South American (1969 ellipsoid<option>WGS72 ellipsoid<option>User defined ellipsoid</select> <br> </td></tr>  <tr> <td> <button type="button" class="btn btn-primary" value="Calculate" accesskey="C" onclick="calculate()"> <span class="glyphicon glyphicon-cog"></span> Calculate </button> <button type="button" class="btn btn-danger" value="Clear" accesskey="0" onclick="resetValues()"> <span class="glyphicon glyphicon-refresh"></span> Reset </button> <br> </td></tr>  <tr><td align="left"><label for="destination" id="destinationlabel" accesskey="P">Destination point:</label><br><textarea class="results" id="destination" cols="35" rows="4" readonly="readonly" onfocus="this.select()" onclick="this.select()"></textarea></td><td align="left" valign="top"><br></td><tr> <td> <input type="button" class="btn btn-success" value="See it on map" Id="map" onClick="viewMap()"></td></tr></tr></table></form>');
+
+
+function writeLatLon() {
+var i = f1.results.selectedIndex;
+f1.startlat.value = lats[i];
+f1.startlon.value = lons[i];
+}
+
+function setEllipse() {
+var i=f1.model.selectedIndex;
+if (i==customIndex) {
+f1.major.value="";
+f1.minor.value="";
+f1.destination.value="";
+document.getElementById("ellipserow").style.display = "block";
+return;
+} else {
+document.getElementById("ellipserow").style.display = "none";
+if (f1.destination.value != "") {
+calculate();
+}
+}
+}
+
+function appendOptionLast(combo, item) {
+  var elOptNew = document.createElement('option');
+  elOptNew.text = item;
+  elOptNew.value = item;
+  var elSel = document.getElementById(combo);
+  try {
+    elSel.add(elOptNew, null);
+  }
+  catch(ex) {
+    elSel.add(elOptNew);
+  }
+}
+
+
+function clearGeocode() {
+f1.search.value = "";
+f1.results.length=0;
+document.getElementById("resultslabel").innerHTML = "search results:"; 
+f1.startlat.value = "";
+f1.startlon.value = "";
+toggle2Rows("searchrow", "resultsrow");
+f1.destination.value= "";
+f1.search.focus()
+}
+
+function resetValues() {
+f1.startlat.value="";
+f1.startlon.value="";
+f1.bearing.value = "";
+f1.dist.value="";
+f1.search.value = "";
+f1.results.length = 0;
+f1.destination.value= "";
+f1.major.value="";
+f1.minor.value="";
+document.getElementById("searchrow").style.display = "block";
+document.getElementById("resultsrow").style.display = "none";
+}
+
+function rad(dg) {
+  return (dg* Math.PI / 180);
+}
+
+function deg(rd) {
+  return (rd* 180 / Math.PI);
+}
+
+function trim(s) {
+while(s.charCodeAt(0)<33 || s.charCodeAt(0)==160)
+s=s.substring(1,s.length);
+while(s.charCodeAt(s.length-1)<33 || s.charCodeAt(s.length-1)==160)
+s=s.substring(0,s.length-1);
+return s;
+}
+
+function normalizeLongitude(lon) {
+var n=Math.PI;
+if (lon > n) {
+lon = lon - 2*n
+} else if (lon < -n) {
+lon = lon + 2*n
+}
+return lon;
+}
+
+function normalizeBearing(brg) {
+var n=2*Math.PI;
+if (brg < 0) {
+brg = brg + n
+} else if (brg >= n) {
+brg = brg - n
+}
+return brg;
+}
+
+function isValidFP(n, name, allowNull) {
+  if (n == "" && !allowNull) {
+alert("The " + name + " is required");
+return false;
+}
+if (parseFloat(n, 10) != n) {
+alert("The " + name + " is invalid");
+return false;
+}
+return true;
+}
+
+function checkMinMax(n, mn, mx, name, units) {
+if (n<mn || n>mx) {
+alert("The " + name + " must be between " + mn + " and " + mx + " " + units);
+return false
+}
+return true;
+}
+
+function calculate() {
+var mx, units, radiusEarth, smaj;
+var brg = new Array(0, 180, 0);
+with (Math) {
+var startlat=latLonToDecimal(f1.startlat.value, -90, 90, "latitude");
+if (startlat == -999) {
+f1.startlat.focus();
+return;
+}
+gStartlat=startlat;
+var j=0;
+if (startlat == 90) {
+startlat = 89.999999999;
+j=1
+}
+if (startlat == -90) {
+startlat = -89.999999999;
+j=2;
+}
+startlat=rad(startlat);
+var startlon=latLonToDecimal(f1.startlon.value, -180, 180, "longitude");
+if (startlon == -999) {
+f1.startlon.focus();
+return;
+}
+gStartlon=startlon;
+startlon=rad(startlon);
+brg[0] = latLonToDecimal(f1.bearing.value, 0, 360, "bearing");
+if (brg[0] == -999) {
+f1.bearing.focus();
+return;
+}
+brg[j] = rad(brg[j]);
+var dist=f1.dist.value;
+if (!isValidFP(dist, "distance", false)) {
+    f1.dist.focus();
+return false;
+}
+if (f1.distunits[1].checked) {
+mx=41000;
+radiusEarth=6372.7976;
+units="km";
+} else {
+mx=25000;
+radiusEarth=3959.8728;
+units="miles";
+}
+var i=f1.model.selectedIndex;
+if (i<customIndex) {
+// models 0 to 12
+smaj=smajor[i]*1;
+if (!checkMinMax(dist, 0, mx, "distance", units)) {
+    f1.dist.focus();
+return false;
+  }
+var sminor=getSemiMinor(smaj, flat[i]);
+} else {
+// user defined ellipse
+smajor[i]= trim(f1.major.value);
+smaj= f1.major.value*1;
+if (!isValidFP(smaj, "equatorial radius", false) || !checkMinMax(smaj, 1, 1000000000, "equatorial radius", "meters")) {
+f1.major.focus();
+return false;
+}
+var sminor= trim(f1.minor.value)*1;
+if (f1.param2.selectedIndex == 1) {
+if (!isValidFP(sminor, "inverse flattening", false)) {
+f1.minor.focus();
+return false;
+} 
+flat[i]=sminor;
+sminor=getSemiMinor(smaj, flat[i]);
+if (flat[i]<2) {
+alert("The inverse flattening must be 2 or greater");
+f1.minor.focus();
+return false;
+}
+} else {
+if (!isValidFP(sminor, "polar radius", false)) {
+f1.minor.focus();
+return false;
+} 
+flat[i]=smaj/(smaj-sminor);
+if (sminor < smaj/2) {
+alert("The polar radius must not be less than one half the equatorial radius");
+f1.minor.focus();
+return false;
+}
+if (sminor >= smaj) {
+alert("for ellipsoid models the polar radius must be smaller than the equatorial radius");
+f1.minor.focus();
+return false;
+}
+}
+var c= smaj*PI/500;
+if (f1.distunits[0].checked) {
+c=c/1.609344;
+}
+var l=floor(log(c)/log(10)) - 1;
+mx=ceil(c/pow(10, l))*pow(10, l);
+if (!checkMinMax(dist, 0, mx, "distance", units)) {
+f1.dist.focus();
+return false;
+}
+}
+
+
+
+if (i != 0) {
+destEllipse(startlat, startlon, brg[j], dist, smaj, sminor)
+} else {
+destSphere(startlat, startlon, brg[j], dist/radiusEarth);
+}
+if  (isNaN(point.finalBrg) || isNaN(point.lat) || isNaN(point.lon)) {
+alert("The destination point could not be calculated");
+return false;
+}
+
+point.lat = padZeroRight(deg(point.lat));
+point.lon = padZeroRight(deg(normalizeLongitude(point.lon)));
+point.finalBrg = deg(normalizeBearing(point.finalBrg));
+point.backBrg=deg(normalizeBearing(point.backBrg));
+f1.destination.value = "Latitude: " + decimalToDMS(point.lat, 1) + "   "+point.lat + "\n";
+f1.destination.value += "Longitude: " + decimalToDMS(point.lon, 0) + "   " + point.lon + "\n";
+f1.destination.value += "Final bearing: " + decimalToDMS(point.finalBrg, 2) + "   " + padZeroRight(point.finalBrg) + "\n";
+f1.destination.value += "Back bearing: " + decimalToDMS(point.backBrg, 2) + "   " + padZeroRight(point.backBrg);
+
+}
+}
+
+
+
+
+
+function getSemiMinor(smajor, flat) {
+return smajor-(smajor/flat);
+}
+
+function latLonToDecimal(ll, mn, mx, f) {
+  var fail;
+ll = trim(ll);
+var   msg= "invalid";
+if (ll == "") {
+msg= "required";
+fail=true;
+}
+  if (parseFloat(ll, 10) != ll) {
+var ch=ll.substring(ll.length-1);
+ch=ch.toLowerCase();
+if (f != "bearing") {
+if (!/^\d{1,3}(\W{1,2}\d{1,2}){0,2}\W{0,2}(e|n|s|w)$/i.test(ll) || f=="latitude" && ch!="n"&&ch!="s" || f=="longitude"&&ch!="e"&&ch!="w") {
+fail = true;
+}
+} else {
+if (!/^\d{1,3}(\W{1,2}\d{1,2}){0,2}\W{0,3}$/i.test(ll)) {
+fail = true;
+}
+}
+if (!fail) {
+var dms = ll.split(/\D/gi);
+ll = dms[0];
+for (i=1; i<dms.length; i++) {
+if (dms[i] > 59) {
+fail = true;
+}
+ll=ll*1+dms[i]/Math.pow(60, i);
+}
+if (ch == "s" || ch == "w") {
+ll=-ll;
+}
+}
+}
+if (!fail) {
+if (ll<mn || ll>mx) {
+msg="invalid. It must be a number between " + mn + " and " + mx + ".";
+fail=true;
+}
+}
+  if (fail) {
+      alert ('The ' + f + ' is ' + msg);
+    return -999;
+    } else {
+return ll;
+  }
+}
+
+function padWithZero(s) {
+  if (s<10) {
+    s= "0" + s;
+  }
+  return s;
+}
+
+function padZeroRight(s) {
+if (sigDigits>8) {
+sigDigits=8;
+} else if (sigDigits < 5) {
+sigDigits=5;
+}
+  s="" + Math.round(s*Math.pow(10, sigDigits))/Math.pow(10, sigDigits);
+  var i = s.indexOf('.');
+var d=(s.length-i-1);
+  if (i == -1) {
+    return (s + ".00");
+    } else if (d == 1) {
+    return (s + "0");
+  } else {
+return s;
+}
+}
+
+function decimalToDMS(l, type) {
+// type lat=0 lon=1 brg=2
+  var dir1="";
+if (type==1) {
+  if (l<0) {
+    dir1= "S";
+    } else {
+    dir1 = "N";
+  }
+} else if (type==0) {
+  if (l<0) {
+    dir1= "W";
+    } else {
+    dir1= "E";
+  }
+}
+  l=Math.abs(Math.round(l*3600)/3600);
+  var deg1= Math.floor(l);
+  var temp=(l-deg1)*60;
+  var min1=padWithZero(Math.floor(temp));
+  temp=(temp-min1);
+  var sec1=padWithZero(Math.round(temp*60));
+if (sec1 == 60) {
+sec1 = 59;
+}
+return Math.abs(deg1) + '\u00B0' + min1 + '\u2032' + sec1 + '\u2033' + dir1;
+}
+
+
+
+
+function viewMap() {
+
+
+  if (f1.destination.value != "") {
+var url = "index.html?" + point.lat + "&" + point.lon + "&" + gStartlat + "&" + gStartlon;
+
+f1.target = "mapwin";
+mapwin=window.open(url,"mapwin","menubar=1,toolbar=1,directories=1,location=1,status=1,resizable=1,scrollbars=1");
+
+    } else {
+alert ('You must calculate the destination point before viewing a map');
+  }
+}
+
+
+
+
+function destEllipse(lat1, lon1, brg, s, a, b) {
+with (Math) {
+if (f1.distunits[1].checked) {
+s *= 1000;
+} else {
+s *= 1609.344;
+}
+ var ind = max(f1.model.selectedIndex, 1);
+var cs1, ds1, ss1, cs1m;
+var f = 1/flat[ind];  
+var sb=sin(brg);
+var cb=cos(brg);
+var tu1=(1-f)*tan(lat1);
+var cu1=1/sqrt((1+tu1*tu1));
+var su1=tu1*cu1;
+var s2=atan2(tu1, cb);
+var sa = cu1*sb;
+var csa=1-sa*sa;
+var us=csa*(a*a - b*b)/(b*b);
+var A=1+us/16384*(4096+us*(-768+us*(320-175*us)));
+var B = us/1024*(256+us*(-128+us*(74-47*us)));
+var s1=s/(b*A);
+var s1p = 2*PI;
+while (abs(s1-s1p) > 1e-12) {
+ cs1m=cos(2*s2+s1);
+ ss1=sin(s1);
+ cs1=cos(s1);
+ ds1=B*ss1*(cs1m+B/4*(cs1*(-1+2*cs1m*cs1m)- B/6*cs1m*(-3+4*ss1*ss1)*(-3+4*cs1m*cs1m)));
+ s1p=s1;
+ s1=s/(b*A)+ds1;
+}
+var t=su1*ss1-cu1*cs1*cb;
+var lat2=atan2(su1*cs1+cu1*ss1*cb, (1-f)*sqrt(sa*sa + t*t));
+var l2=atan2(ss1*sb, cu1*cs1-su1*ss1*cb);
+var c=f/16*csa*(4+f*(4-3*csa));
+var l=l2-(1-c)*f*sa* (s1+c*ss1*(cs1m+c*cs1*(-1+2*cs1m*cs1m)));
+var d=atan2(sa, -t);
+point.finalBrg=d+2*PI;
+point.backBrg=d+PI;
+point.lat = lat2;
+point.lon = lon1+l;
+}
+}
+
+function destSphere(lat1, lon1, brg, dist) {
+with (Math) {
+point.lat = asin(sin(lat1)*cos(dist) + cos(lat1)*sin(dist)*cos(brg));
+point.lon = lon1 + atan2(sin(brg)*sin(dist)*cos(lat1), cos(dist)-sin(lat1)*sin(point.lat));
+var dLon = lon1-point.lon;
+var y = sin(dLon) * cos(lat1);
+var x = cos(point.lat)*sin(lat1) - sin(point.lat)*cos(lat1)*cos(dLon);
+var d=atan2(y, x);
+point.finalBrg = d+PI;
+point.backBrg=d+2*PI;
+}
+}
+
+
+var recipient="C" + "o" + "n" + "t" + "a" + "c" + "t"
+var eml = "mailto:" + "&#100;&#101;" + "a" + "&#110;&#64;&#103;&#101;&#111;&#109;&#105;&#100;&#112;&#111;&#105;&#110;&#116;&#46;&#99;&#111;&#109;";
+
+function e() {
+document.write('<a href=' + eml + '>' + recipient + '</a>');
+}
+
+google.setOnLoadCallback
+(initialize);
+
+</script>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+        <!--   <p>
+              <input class='form-control' id='search_address' placeholder='Enter an address or an intersection' type='text' />
+            </p>
+            <p>
+              <input class='form-control' id='loc' type='text' />
+            </p>
+            <p>
+              <label>
+                within
+                <select id='search_radius'>
+                  <option value='400'>2 blocks</option>
+                  <option value='805'>1/2 mile</option>
+                  <option value='1610'>1 mile</option>
+                  <option value='3220'>2 miles</option>
+                </select>
+              </label>
+            </p>
+
+
+          <div id="directions"></div>
+          -->
+      
+            
+            <a class='btn btn-primary' id='reset' href='#'>
+              <i class='glyphicon glyphicon-repeat'></i>
+              Reset
+            </a>
+          </div>
+          <div class='alert alert-info' id='result_box' ><strong id='result_count'></strong></div>
+        </div>
+        <div class='col-md-8'>
+          <noscript>
+            <div class='alert alert-info'>
+              <h4>Your JavaScript is disabled</h4>
+              <p>Please enable JavaScript to view the map.</p>
+            </div>
+          </noscript>
+
+          <form class="form-inline" style="display: none;">
+          <div class="form-group">
+          <input type="text" class="form-control" id="routeFrom" name="routeFrom" placeholder="From" value="">
+          </div>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+
+          <div class="form-group">
+            <input type="text" class="form-control" id="routeTo" name="routeTo" placeholder="To" value="">
+          </div>
+          &nbsp; &nbsp; &nbsp;
+           <a href="#" id="routeGo" class="btn btn-primary btn-sm">Route</a>
+           <button id="waypointAdd" class="btn btn-info btn-sm">Add waypoint</button>
+        </form>
+        <hr class="colorgraph">
+          <div id='map_canvas' style="border: 5px solid rgba(204, 204, 204, 0.8); border-radius: 10px;"></div>
+           <div id="googft-legend" style=" z-index: 0;  position: absolute;  bottom: 60px; left: 20px; ">
+            <p id="googft-legend-title" style="text-align: center;">Legend</p>
+            <div>
+              <img class="googft-dot-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAi0lEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NijL7v3p1+v8zZ6rAdGCg4X+g+EyYorS0NNv////PxMCxsRYghbEgRQcOHCjGqmjv3kKQor0gRQ8fPmzHquj27WaQottEmxQLshubopAQI5CiEJjj54N8t3FjFth369ZlwHw3jQENgMJpIzSc1iGHEwB8p5qDBbsHtAAAAABJRU5ErkJggg=="/>
+              <span class="googft-legend-range">Poles</span>
+            </div>
+           
+            <div>
+              <img class="googft-dot-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAiklEQVR42mNgQIAoIF4NxGegdCCSHAMzEC+NUlH5v9rF5f+ZoCAwHaig8B8oPhOmKC1NU/P//7Q0DByrqgpSGAtSdOCAry9WRXt9fECK9oIUPXwYFYVV0e2ICJCi20SbFAuyG5uiECUlkKIQmOPng3y30d0d7Lt1bm4w301jQAOgcNoIDad1yOEEAFm9fSv/VqtJAAAAAElFTkSuQmCC"/>
+              <span class="googft-legend-range">HandHoles</span>
+            </div>
+            <div class="googft-legend-source">
+            <img src="images/ipnx.png" style="width: 60px;">
+              
+            </div>
+            <input id="googft-legend-close" style="display:none" type="button" value="Hide">
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <footer>
+        <div class="container">
+          <p>eFaulty Map © 2019 | All Rights Reserved  &nbsp; &nbsp; &nbsp; <a href="http://www.efaultymaps.ml/" rel="author"> efaultymap</a></p>
+        </div>
+      </footer>
+  
+    
+
+    
+    <script type="text/javascript" src="http://derekeder.github.io/FusionTable-Map-Template/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="http://derekeder.github.io/FusionTable-Map-Template/js/jquery.address.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places&key=AIzaSyCHs4Jwbs2CoI7u8NujfRVr4GkWR7cSPbg"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.1/typed.min.js"></script>
+    <script type="text/javascript" src="js/maps_lib.js"></script>
+   
+
+
+<script type="text/javascript">
+
+$(function(){
+	$(".typed").typed({
+		strings: ["The eFaulty Map is Web based App built on Google Cloud.", "To manage Fiber optic cable deployment" , "using Geographic Information System (GIS) Solution", "to detect fiber optic fault and basic spatial analysis,", "for FTTP, FTTX, and FTTH Models ."],
+		// Optionally use an HTML element to grab strings from (must wrap each string in a <p>)
+		stringsElement: null,
+		// typing speed
+		typeSpeed: 30,
+		// time before typing starts
+		startDelay: 1200,
+		// backspacing speed
+		backSpeed: 20,
+		// time before backspacing
+		backDelay: 500,
+		// loop
+		loop: true,
+		// false = infinite
+		loopCount: 5,
+		// show cursor
+		showCursor: false,
+		// character for cursor
+		cursorChar: "|",
+		// attribute to type (null == text)
+		attr: null,
+		// either html or text
+		contentType: 'html',
+		// call when done callback function
+		callback: function() {},
+		// starting callback function before each string
+		preStringTyped: function() {},
+		//callback for every typed string
+		onStringTyped: function() {},
+		// callback for reset
+		resetCallback: function() {}
+	});
+});
+
+
+</script>
+   
+
+    <script type='text/javascript'>
+        $(window).resize(function () {
+          var h = $(window).height(),
+            offsetTop = 105; // Calculate the top offset
+        
+          $('#map_canvas').css('height', (h - offsetTop));
+        }).resize();
+
+        </script>
+
+<script type="text/javascript">
+
+       function initialize() {
+
+   /* var myMap = new google.maps.Map(document.getElementById('map-canvas'), {
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: new google.maps.LatLng(6.4377, 3.4828),
+        zoom: 4
+      });
+      
+    */
+
+          var myMap = new MapsLib({
+            fusionTableId:      "1QqOnEdbwnogwNT5bh0EVfc_vapXpyx1cP03HuLoM",
+            googleApiKey:       "AIzaSyCHs4Jwbs2CoI7u8NujfRVr4GkWR7cSPbg",
+            locationColumn:     "col19",
+            map_center:         [6.4377, 3.4828],
+            //locationScope:      "chicago"
+          });
+
+
+       
+   
+
+             
+         /* var myMap = new MapsLib({
+            fusionTableId:      "1m4Ez9xyTGfY2CU6O-UgEcPzlS0rnzLU93e4Faa0",
+            googleApiKey:       "AIzaSyCHs4Jwbs2CoI7u8NujfRVr4GkWR7cSPbg",
+            locationColumn:     "geometry",
+            map_center:         [6.4377, 3.4828],
+            //locationScope:      "chicago"
+          });
+*/
+
+
+        //var latlng = {lat:6.4377, lng:3.4828}; //Set the default location of map
+
+        /*var marker = new google.maps.Marker({
+
+        position: {lat:6.4377, lng:3.4828},
+
+        map: myMap,
+
+        title: 'Place the marker for your location!', //The title on hover to display
+
+        draggable: true //this makes it drag and drop
+
+    });
+
+    */
+           
+        // console.log(marker.position);
+
+
+        //console.log(marker.position);
+        // To add the marker to the map, call setMap();
+        //marker.setMap(myMap);
+
+
+        var autocomplete = new google.maps.places.Autocomplete(document.getElementById('search_address'));
+
+        var autocomplete2 = new google.maps.places.Autocomplete(document.getElementById('routeFrom'));
+            //autocomplete2.bindTo('bounds', self.map);
+        var autocomplete1 = new google.maps.places.Autocomplete(document.getElementById('routeTo'));
+            //autocomplete1.bindTo('bounds', self.map);
+      
+          $(':checkbox').click(function(){
+            myMap.doSearch();
+          });
+
+          $(':radio').click(function(){
+            myMap.doSearch();
+          });
+          
+          $('#search_radius').change(function(){
+            myMap.doSearch();
+          });
+          
+          $('#search').click(function(){
+            myMap.doSearch();
+          });
+          
+          $('#find_me').click(function(){
+            myMap.findMe(); 
+            return false;
+          });
+          
+          
+
+          $('#routeGo').click(function(){
+            myMap.reach();
+          });
+
+
+
+          $('#reset').click(function(){
+            myMap.reset(); 
+            return false;
+          });
+          
+          $(":text").keydown(function(e){
+              var key =  e.keyCode ? e.keyCode : e.which;
+              if(key === 13) {
+                  $('#search').click();
+                  return false;
+              }
+          });
+
+          
+
+       };
+
+      //document.getElementById("block2").style.display = "display";
+        google.maps.event.addDomListener(window, 'load', initialize);
+      
+    </script>
+
+
+<script type="text/javascript">
+    
+      var map, infoWindow;
+var lat = new Array();
+var lng = new Array();
+var markers=new Array();
+
+function initialize1() {
+self.focus();
+var search=window.location.search;
+if (search.substring(0, 1) == "?") {
+search = unescape(search.substring(1));
+var params=search.split('&');
+lat[0] = params[0];
+lng[0]=params[1];
+lat[1]=params[2];
+lng[1]=params[3];
+document.title = "Destination Point Map - Lat " + lat[0] + " Long " + lng[0];
+infoWindow= new google.maps.InfoWindow( {
+content: ""
+});
+var bounds=new google.maps.LatLngBounds();
+var point, i;
+for(i=0;i<lat.length;i++){
+bounds.extend(new google.maps.LatLng(lat[i],lng[i]));
+}
+var options = {
+zoom: 8,
+center: new google.maps.LatLng(-34.397, 150.644),
+mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+map = new google.maps.Map(document.getElementById('map_canvas') , options);
+map.fitBounds(bounds);
+if(map.getZoom()>15) map.setZoom(15);
+
+
+
+var path=[new google.maps.LatLng(lat[1],lng[1]), new google.maps.LatLng(lat[0],lng[0])];
+var flightPath = new google.maps.Polyline({
+path: path,
+strokeColor: '#008000',
+strokeOpacity: 1.0,
+strokeWeight: 2,
+geodesic: true, 
+draggable: false,
+editable: true,
+icons: [{
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            scale: 6,
+            strokeColor: '#393'
+          },
+          offset: '100%'
+        }]
+
+});
+  flightPath.setMap(map);
+  if (flightPath) {
+document.getElementById("block2").style.display = "none";
+}
+else {
+document.getElementById("block2").style.display = "display";
+
+}
+  
+
+
+  function animate() {
+    var count = 0;
+   var int = setInterval(function() {
+      count = (count + 1) % 200;
+      var icons = flightPath.get('icons');
+      icons[0].offset = (count / 2) + '%';
+      flightPath.set('icons', icons);
+  }, 24);
+};
+
+animate();
+
+  layer = new google.maps.FusionTablesLayer({
+      map: map,
+      heatmap: { enabled: false },
+      query: {
+        select: "col19",
+        from: "1QqOnEdbwnogwNT5bh0EVfc_vapXpyx1cP03HuLoM",
+        where: ""
+      },
+      options: {
+        styleId: 2,
+        templateId: 2
+      }
+    });
+
+
+for(i=0;i<lat.length;i++){
+point=new google.maps.LatLng(lat[i],lng[i]);
+markers[i]=createMarker(point,i);
+markers[i].i=i;
+}
+}
+}
+
+
+function drawSearchRadiusCircle (point) {
+        var self = this;
+        var circleOptions = {
+            strokeColor: "#4b58a6",
+            strokeOpacity: 0.3,
+            strokeWeight: 1,
+            fillColor: "#4b58a6",
+            fillOpacity: 0.05,
+            map: self.map,
+            center: point,
+            clickable: false,
+            zIndex: -1,
+            radius: parseInt(20)
+        };
+        self.marker = new google.maps.Circle(circleOptions);
+    };
+
+
+
+function createMarker(point, i) {
+var icon;
+if (i==0) {
+icon = 'images/darkgreen_MarkerD';
+} else {
+icon = 'images/red_MarkerS.png';
+}
+var shadow={
+url: 'images/shadow50.png',
+size: new google.maps.Size(37,34),
+origin: new google.maps.Point(0,0),
+anchor: new google.maps.Point(10, 34)
+};
+var marker=new google.maps.Marker({
+position: point,
+map: map,
+icon: icon,
+shadow: shadow
+});
+drawSearchRadiusCircle(new google.maps.LatLng(lat[0],lng[0]));
+google.maps.event.addListener(marker, "click", function() {
+var h;
+if (marker.i==0) {
+h=formatInfo('Destination point', marker.i);
+} else {
+h=formatInfo('Starting point', marker.i);
+}
+infoWindow.content=h;
+infoWindow.open(map, marker);
+});
+return marker;
+}
+
+function formatInfo(s, i) {
+var h='<div style="width: 16.5em"><p class="pz">' + s + '</p>';
+if (!isNaN(lat[i])) {
+h += '<div class="DWH">Latitude:<br>Longitude:</div><div class="DBL" onclick="selectText(this)">' + 
+roundx(lat[i],6) + '<br>' + roundx(lng[i],6) + '</div><div class="DCL"></div>';
+}
+h += '<p class = "pz"><a class="bluelink" href="javascript:transfer(' + i + ')">Find nearby points of interest</a></p>'; 
+h += '</div>';
+return h;
+}
+
+function transfer(i) {
+var a=['Destination++point','Starting++point'];
+var l=lat[i];
+var n=lng[i];
+var u='l=' + l + '&n=' + n + '&ml=' + l + '&mn=' + n + '&cl=' + l + '&cn=' + n + '&z=' + map.getZoom() + '&a=' + a[i];
+var m1="Click ok to transfer this marker to a page with a searchable map where you can search for nearby points of interest"; 
+a=confirm(m1);
+if (a) {
+window.location="../meet/index.html?" + u; 
+}
+}
+
+function selectText(myDiv){
+if (window.getSelection) {
+var selection = window.getSelection();
+if (selection.setBaseAndExtent) {
+selection.setBaseAndExtent(myDiv, 0, myDiv, 1);
+} else {
+var range = document.createRange();
+range.selectNodeContents(myDiv);
+selection.removeAllRanges();
+selection.addRange(range);
+}
+} else {
+var range = document.body.createTextRange();
+range.moveToElementText(myDiv);
+range.select();
+}
+}
+
+function roundx(n, exp) {
+return Math.round(n*Math.pow(10,exp))/Math.pow(10,exp);
+}
+
+
+
+google.maps.event.addDomListener(window, 'load', initialize1 );
+
+
+
+  </script>
+
+<script type="text/javascript">
+
+  function GetLocation() {
+      var geocoder = new google.maps.Geocoder();
+      //var addresses = new google.maps.places.Autocomplete(document.getElementById('txtaddr'));
+      //var address = addresses.getplace();
+      var address = document.getElementById("txtaddr").value;
+      geocoder.geocode({ 'address': address }, function (results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat().toFixed(5);
+              var longitude = results[0].geometry.location.lng().toFixed(5);
+              document.getElementById('result').innerHTML = ("Latitude :  "  + latitude +  "<br>" + "\nLongitude:  " + longitude);
+             // alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+          } else {
+              alert("Request failed.")
+          }
+      });
+  };
+  //google.maps.event.addDomListener(window, 'load', GetLocation);
+
+</script>
+
+
+<script>
+    $('.btn-toggle').click(function() {
+      $(this).find('.btn').toggleClass('active');  
+      
+      if ($(this).find('.btn-primary').length>0) {
+        $(this).find('.btn').toggleClass('btn-primary');
+      }
+      if ($(this).find('.btn-danger').length>0) {
+        $(this).find('.btn').toggleClass('btn-danger');
+      }
+      if ($(this).find('.btn-success').length>0) {
+        $(this).find('.btn').toggleClass('btn-success');
+      }
+      if ($(this).find('.btn-info').length>0) {
+        $(this).find('.btn').toggleClass('btn-info');
+      }
+      
+      $(this).find('.btn').toggleClass('btn-default');
+         
+  });
+  
+  $('form').submit(function(){
+    var radioValue = $("input[name='options']:checked").val();
+    if(radioValue){
+       alert("You selected - " + radioValue);
+     };
+      return false;
+  });
+    </script>
+
+
+ 
+
+  </body>
+</html>
